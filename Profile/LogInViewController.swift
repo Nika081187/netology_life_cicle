@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class LogInViewController: UIViewController {
     private let basePadding: CGFloat = 16.0
     

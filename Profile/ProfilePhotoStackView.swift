@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@available(iOS 13.0, *)
 class ProfilePhotoStackView: UIView {
     let baseOffset: CGFloat =  12
     
@@ -31,9 +32,9 @@ class ProfilePhotoStackView: UIView {
     
     @objc func buttonPressed() {
         print("Arrow button pressed")
-        let root = findViewController()
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotosViewController") as? PhotosViewController
-        root!.navigationController?.pushViewController(vc!, animated: false)
+//        let root = findViewController()
+//        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "PhotosViewController") as? PhotosViewController
+//        root!.navigationController?.pushViewController(vc!, animated: false)
     }
     
     private lazy var photoStackView: UIStackView = {
