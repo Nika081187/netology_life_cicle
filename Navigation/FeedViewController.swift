@@ -8,7 +8,23 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 final class FeedViewController: UIViewController {
+    
+    private lazy var postButton: UIButton = {
+        let postButton = UIButton(type: .system)
+        postButton.setTitle("Open post", for: .normal)
+        postButton.setTitleColor(.white, for: .normal)
+        postButton.addTarget(self, action: #selector(buttonPressed), for:.touchUpInside)
+        postButton.toAutoLayout()
+        return postButton
+    }()
+    
+    @objc func buttonPressed() {
+        let vc = PostViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -22,7 +38,21 @@ final class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(postButton)
+        view.backgroundColor = .blue
         print(type(of: self), #function)
+        
+//        let navigation = UINavigationController(rootViewController: FeedViewController())
+//        navigationController?.isToolbarHidden = false
+//        navigationItem.title = "Feed"
+//        view.addSubview(navigation.view)
+        
+        NSLayoutConstraint.activate([
+            postButton.heightAnchor.constraint(equalToConstant: 50),
+            postButton.widthAnchor.constraint(equalToConstant: 100),
+            postButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            postButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,14 +83,5 @@ final class FeedViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         print(type(of: self), #function)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "post" else {
-            return
-        }
-        guard let postViewController = segue.destination as? PostViewController else {
-            return
-        }
     }
 }

@@ -8,10 +8,43 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class PostViewController: UIViewController {
-    var post: Post?
+    
+    private lazy var addButton: UIButton = {
+        let addButton = UIButton(type: .system)
+        addButton.setTitle("Add post", for: .normal)
+        addButton.setTitleColor(.white, for: .normal)
+        addButton.addTarget(self, action: #selector(addPostPressed), for:.touchUpInside)
+        addButton.toAutoLayout()
+        return addButton
+    }()
 
+    @objc func addPostPressed(){
+        print("add post!")
+        let vc = InfoViewController()
+        vc.modalPresentationStyle = .popover
+        vc.navigationController?.isToolbarHidden = true
+        present(vc, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let navigation = UINavigationController(rootViewController: FeedViewController())
+        view.addSubview(navigation.view)
+        navigationController?.isToolbarHidden = false
+        navigation.didMove(toParent: self)
+        
+        view.backgroundColor = .systemPink
+        view.addSubview(addButton)
+        
+        
+        NSLayoutConstraint.activate([
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+            addButton.widthAnchor.constraint(equalToConstant: 100),
+            addButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
 }

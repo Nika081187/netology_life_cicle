@@ -173,12 +173,12 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed() {
         print("Log in button pressed")
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyBoard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
-        let navigation = UINavigationController(rootViewController: controller)
-        self.view.addSubview(navigation.view)
-        self.addChild(navigation)
-        navigation.didMove(toParent: self)
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyBoard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
+//        let navigation = UINavigationController(rootViewController: controller)
+//        self.view.addSubview(navigation.view)
+//        self.addChild(navigation)
+//        navigation.didMove(toParent: self)
     }
 }
 

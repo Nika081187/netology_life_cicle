@@ -10,11 +10,33 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
+    private lazy var showAlertButton: UIButton = {
+        let showAlertButton = UIButton(type: .system)
+        showAlertButton.setTitle("Add post", for: .normal)
+        showAlertButton.setTitleColor(.red, for: .normal)
+        showAlertButton.addTarget(self, action: #selector(showAlertPressed), for:.touchUpInside)
+        showAlertButton.toAutoLayout()
+        return showAlertButton
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .yellow
+        view.addSubview(showAlertButton)
+        
+        NSLayoutConstraint.activate([
+            showAlertButton.heightAnchor.constraint(equalToConstant: 50),
+            showAlertButton.widthAnchor.constraint(equalToConstant: 100),
+            showAlertButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            showAlertButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
     
-    @IBAction func showAlert(_ sender: Any) {
+    @objc func showAlertPressed(){
+        showAlert()
+    }
+    
+    @IBAction func showAlert() {
         let alertController = UIAlertController(title: "Удалить пост?", message: "Пост нельзя будет восстановить", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
             print("Отмена")

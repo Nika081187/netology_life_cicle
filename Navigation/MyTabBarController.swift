@@ -13,12 +13,12 @@ class MyTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firstViewController = FeedViewController()
-        firstViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-
-        let secondViewController = ProfileViewController()
-        secondViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-
+        let firstViewController = FeedNavigationViewController()
+        firstViewController.title = "Feed"
+        
+        let secondViewController = ProfileNavigationViewController()
+        secondViewController.title = "Profile"
+        
         let tabBarList = [firstViewController, secondViewController]
         viewControllers = tabBarList
     }
