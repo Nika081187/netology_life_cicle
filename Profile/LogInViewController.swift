@@ -14,6 +14,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Profile"
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -173,12 +174,7 @@ class LogInViewController: UIViewController {
     
     @objc func buttonPressed() {
         print("Log in button pressed")
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let controller = storyBoard.instantiateViewController(identifier: "ProfileViewController") as! ProfileViewController
-//        let navigation = UINavigationController(rootViewController: controller)
-//        self.view.addSubview(navigation.view)
-//        self.addChild(navigation)
-//        navigation.didMove(toParent: self)
+        self.navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
 }
 

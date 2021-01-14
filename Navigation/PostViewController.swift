@@ -27,18 +27,22 @@ class PostViewController: UIViewController {
         vc.navigationController?.isToolbarHidden = true
         present(vc, animated: true, completion: nil)
     }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        print(type(of: self), #function)
+    }
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        print(type(of: self), #function)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let navigation = UINavigationController(rootViewController: FeedViewController())
-        view.addSubview(navigation.view)
-        navigationController?.isToolbarHidden = false
-        navigation.didMove(toParent: self)
+        print(type(of: self), #function)
+        title = "Post"
         
         view.backgroundColor = .systemPink
         view.addSubview(addButton)
-        
         
         NSLayoutConstraint.activate([
             addButton.heightAnchor.constraint(equalToConstant: 50),

@@ -66,6 +66,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         table.toAutoLayout()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 250

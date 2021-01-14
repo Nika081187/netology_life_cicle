@@ -22,8 +22,7 @@ final class FeedViewController: UIViewController {
     
     @objc func buttonPressed() {
         let vc = PostViewController()
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -41,11 +40,7 @@ final class FeedViewController: UIViewController {
         view.addSubview(postButton)
         view.backgroundColor = .blue
         print(type(of: self), #function)
-        
-//        let navigation = UINavigationController(rootViewController: FeedViewController())
-//        navigationController?.isToolbarHidden = false
-//        navigationItem.title = "Feed"
-//        view.addSubview(navigation.view)
+        title = "Feed"
         
         NSLayoutConstraint.activate([
             postButton.heightAnchor.constraint(equalToConstant: 50),

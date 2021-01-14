@@ -10,16 +10,9 @@ import UIKit
 
 @available(iOS 13.0, *)
 class MyTabBarController: UITabBarController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firstViewController = FeedNavigationViewController()
-        firstViewController.title = "Feed"
-        
-        let secondViewController = ProfileNavigationViewController()
-        secondViewController.title = "Profile"
-        
-        let tabBarList = [firstViewController, secondViewController]
-        viewControllers = tabBarList
+        viewControllers = [FeedNavigationViewController(), ProfileNavigationViewController()]
     }
 }

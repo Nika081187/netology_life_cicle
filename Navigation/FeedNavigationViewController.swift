@@ -10,11 +10,9 @@ import UIKit
 
 @available(iOS 13.0, *)
 class FeedNavigationViewController: UINavigationController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.title = "Feed"
         pushViewController(FeedViewController(), animated: true)
-//        let navCont = UINavigationController(rootViewController: FeedViewController())
-//        navCont.tabBarItem.title = "Feed"
     }
 }
