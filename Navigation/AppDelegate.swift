@@ -20,7 +20,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: MyTabBarController())
         
         window?.makeKeyAndVisible()
+        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(
+          UIApplication.backgroundFetchIntervalMinimum)
+        
         return true
     }
+    
+    func application(
+      _ application: UIApplication,
+      performFetchWithCompletionHandler
+        completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+      if let tabBarController = window?.rootViewController as? UITabBarController,
+        let viewControllers = tabBarController.viewControllers {
+
+        for viewController in viewControllers {
+          if let fetchViewController = viewController as? FetchViewController {
+
+            fetchViewController.fetch {
+
+              fetchViewController.updateUI()
+              completionHandler(.newData)
+            }
+          }
+        }
+      }
+    }
+
 }
 
