@@ -27,26 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(
-      _ application: UIApplication,
-      performFetchWithCompletionHandler
-        completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
-      if let tabBarController = window?.rootViewController as? UITabBarController,
-        let viewControllers = tabBarController.viewControllers {
-
-        for viewController in viewControllers {
-          if let fetchViewController = viewController as? FetchViewController {
-
-            fetchViewController.fetch {
-
-              fetchViewController.updateUI()
-              completionHandler(.newData)
-            }
-          }
-        }
-      }
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        //
     }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
+        if let navController = window?.rootViewController as? UINavigationController {
+            let viewController = navController.viewControllers[0] as! MyTabBarController
+            
+            viewController.fetch {
+                viewController.updateUI()
+                  completionHandler(.newData)
+            }
+        }
+    }
 }
 
